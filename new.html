@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app {
+            padding: 20px;
+        }
+        button {
+            width: 140px;
+            height: 60px;
+            font-size:22px;
+        }
+        p {
+            width: 600px;
+            height: 100px;
+            background-color:chartreuse;
+            font-size: 70px;
+            line-height: 100px;
+            color:yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="yes">点击</button>
+        <button @click="no">停住</button>
+        <p>{{ msg }}</p>
+    </div>
+    
+    <script src="./vue.min.js"></script>
+    <script>
+        let vm = new Vue({
+            el:"#app",
+            data:{
+                msg:'孟繁星大傻逼~~！',
+                a:null,
+            },
+            methods:{
+                yes(){
+                    if(this.a != null) return
+                    console.log(this.msg)
+                    let _this = this
+                    this.a = setInterval(()=>{
+                        var start = this.msg.substring(0,1)
+                        var end = this.msg.substring(1)
+                        this.msg = end + start
+
+                    },150)
+                },
+                no(){
+                    console.log(this.msg);
+                    clearInterval(this.a)
+                    this.a = null
+                }
+            }
+        })
+
+
+    </script>
+</body>
+</html>
